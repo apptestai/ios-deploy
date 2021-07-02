@@ -2197,7 +2197,8 @@ void handle_device(AMDeviceRef device) {
 
           // These values were determined by inspecting Xcode 11.1 logs with the Console app.
           CFStringRef keys[] = {
-            CFSTR("CFBundleIdentifier"),
+            // ios-deploy 1.10.0 버전 이후로 CFSTR("CFBundleIdentifier")가 추가되어 에러가 발생함으로 주석처리함
+            //CFSTR("CFBundleIdentifier"),
             CFSTR("CloseOnInvalidate"),
             CFSTR("InvalidateOnDetach"),
             CFSTR("IsUserInitiated"),
@@ -2206,7 +2207,8 @@ void handle_device(AMDeviceRef device) {
             CFSTR("ShadowParentKey"),
           };
           CFStringRef values[] = {
-            install_bundle_id,
+            // ios-deploy 1.10.0 버전 이후로는 번들id를 받게끔 되어있는데, 에러가 발생해서 주석처리함
+            //install_bundle_id,
             CFSTR("1"),
             CFSTR("1"),
             CFSTR("1"),
