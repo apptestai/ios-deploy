@@ -2171,7 +2171,10 @@ void handle_device(AMDeviceRef device) {
         } else {
           CFStringRef extracted_bundle_id = copy_bundle_id(url);
           if (extracted_bundle_id == NULL) {
-            on_error(@"[ ERROR] Could not determine bundle id.");
+            // MODIFIED BY TAEHA: do not terminate
+            //on_error(@"[ ERROR] Could not determine bundle id.");
+            NSLog(@"[ WARN] Could not determine bundle id.");
+            //END
           }
           install_bundle_id = extracted_bundle_id;
         }
@@ -2197,8 +2200,9 @@ void handle_device(AMDeviceRef device) {
 
           // These values were determined by inspecting Xcode 11.1 logs with the Console app.
           CFStringRef keys[] = {
-            // ios-deploy 1.10.0 버전 이후로 CFSTR("CFBundleIdentifier")가 추가되어 에러가 발생함으로 주석처리함
+            // MODIFIED BY TAEHA: ios-deploy 1.10.0 버전 이후로 CFSTR("CFBundleIdentifier")가 추가되어 에러가 발생함으로 주석처리함
             //CFSTR("CFBundleIdentifier"),
+            //END
             CFSTR("CloseOnInvalidate"),
             CFSTR("InvalidateOnDetach"),
             CFSTR("IsUserInitiated"),
@@ -2207,8 +2211,9 @@ void handle_device(AMDeviceRef device) {
             CFSTR("ShadowParentKey"),
           };
           CFStringRef values[] = {
-            // ios-deploy 1.10.0 버전 이후로는 번들id를 받게끔 되어있는데, 에러가 발생해서 주석처리함
+            // MODIFIED BY TAEHA: ios-deploy 1.10.0 버전 이후로는 번들id를 받게끔 되어있는데, 에러가 발생해서 주석처리함
             //install_bundle_id,
+            //END
             CFSTR("1"),
             CFSTR("1"),
             CFSTR("1"),
@@ -2232,24 +2237,29 @@ void handle_device(AMDeviceRef device) {
         CFRelease(options);
 
         connect_and_start_session(device);
-        CFURLRef device_app_url = copy_device_app_url(device, install_bundle_id);
+        // MODIFIED BY TAEHA
+//        CFURLRef device_app_url = copy_device_app_url(device, install_bundle_id);
         check_error(AMDeviceStopSession(device));
         check_error(AMDeviceDisconnect(device));
-        CFStringRef device_app_path = CFURLCopyFileSystemPath(device_app_url, kCFURLPOSIXPathStyle);
+//        CFStringRef device_app_path = CFURLCopyFileSystemPath(device_app_url, kCFURLPOSIXPathStyle);
 
         NSLogOut(@"[100%%] Installed package %@", [NSString stringWithUTF8String:app_path]);
-        NSLogVerbose(@"App path: %@", device_app_path);
+//        NSLogVerbose(@"App path: %@", device_app_path);
         NSLogJSON(@{@"Event": @"BundleInstall",
                     @"OverallPercent": @(100),
                     @"Percent": @(100),
                     @"Status": @"Complete",
-                    @"Path": (__bridge NSString *)device_app_path
+//                    @"Path": (__bridge NSString *)device_app_path
                     });
 
-      CFRelease(device_app_url);
-      CFRelease(install_bundle_id);
-      CFRelease(device_app_path);
+//      CFRelease(device_app_url);
+        if (install_bundle_id != nil) {
+            CFRelease(install_bundle_id);
+        }
+        // 메모리 할당을 안했는데 해제 하려고 하면 에러난다.
+//      CFRelease(device_app_path);
     }
+    // END
     CFRelease(path);
 
     if (!debug)
