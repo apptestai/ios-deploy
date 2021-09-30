@@ -117,7 +117,10 @@ char *envs = NULL;
 char *list_root = NULL;
 const char * custom_script_path = NULL;
 char *symbols_download_directory = NULL;
-int _timeout = 0;
+//MODIFIED BY MO: support millisecond
+//int _timeout = 0;
+float _timeout = 0;
+//END
 int _detectDeadlockTimeout = 0;
 bool _json_output = false;
 NSMutableArray *_file_meta_info = nil;
@@ -2775,7 +2778,10 @@ int main(int argc, char *argv[]) {
             verbose = true;
             break;
         case 't':
-            _timeout = atoi(optarg);
+            //MODIFIED BY MO: support millisecond
+            //_timeout = atoi(optarg);
+            _timeout = atof(optarg);
+            //END
             break;
         case 'u':
             unbuffered = true;
