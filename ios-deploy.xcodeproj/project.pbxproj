@@ -164,7 +164,6 @@
 				TargetAttributes = {
 					7E70898D1B587BF3004D23AA = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 929GGE8Q4W;
 						ProvisioningStyle = Automatic;
 					};
 					7E8E3A821C45D4CE0017F6C1 = {
@@ -398,7 +397,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 929GGE8Q4W;
+				DEVELOPMENT_TEAM = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -409,7 +408,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 929GGE8Q4W;
+				DEVELOPMENT_TEAM = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
