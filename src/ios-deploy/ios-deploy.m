@@ -2944,7 +2944,7 @@ int main(int argc, char *argv[]) {
     {
         CFRunLoopTimerRef timer = CFRunLoopTimerCreate(NULL, CFAbsoluteTimeGetCurrent() + _timeout, 0, 0, 0, timeout_callback, NULL);
         CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, kCFRunLoopCommonModes);
-        NSLogOut(@"[....] Waiting up to %d seconds for iOS device to be connected", _timeout);
+        NSLogOut(@"[....] Waiting up to %.2f seconds for iOS device to be connected", _timeout);
     }
     else
     {
