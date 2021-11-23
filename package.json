@@ -23,6 +23,7 @@
   "scripts": {
     "preinstall": "./src/scripts/check_reqs.js && xcodebuild",
     "build-test": "npm run pycompile && xcodebuild test -scheme ios-deploy-tests",
+    "build": "./src/scripts/build.sh",
     "eslint": "eslint src/scripts/*.js",
     "test": "npm run eslint && npm run build-test",
     "pycompile": "python -m py_compile src/scripts/*.py",
