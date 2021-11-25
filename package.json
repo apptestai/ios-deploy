@@ -6,7 +6,7 @@
   ],
   "description": "launch iOS apps iOS devices from the command line (Xcode 7)",
   "main": "index.js",
-  "bin": "./build/Release/ios-deploy",
+  "bin": "./build/Build/Products/Debug/ios-deploy",
   "repository": {
     "type": "git",
     "url": "https://github.com/ios-control/ios-deploy"
