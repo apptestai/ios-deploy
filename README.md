@@ -3,6 +3,31 @@
 ios-deploy
 ==========
 
+## APPTESTAI NOTE
+
+created js wrapper for ios-deploy.
+either can import path of ios-deploy to execute or can create a new class to execute commands.
+
+#### build ios-deploy
+```
+npm run build ${DEVELOPMENT_TEAM} ${CODE_SIGN_IDENTITY}
+```
+
+#### how to use wrapper
+there are two parameter for iosDeploy class.
+1. path: iosDeploy to use custom iosDeploy pass the path
+2. timeout: timeout for child process, ios-deploy.
+
+```
+const {iosDeploy} = require('ios-deploy');
+tester = new iosDeploy(); 
+(async() => {
+    // arguments are passed as an array
+    await tester.executeCmd(['-c', '-t1', '-j']); 
+  })();
+```
+
+
 Install and debug iOS apps from the command line. Designed to work on un-jailbroken devices.
 
 ## Requirements
